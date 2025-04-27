@@ -1,88 +1,144 @@
-/* Login.css */
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; 
     background-color: #f4f4f4;
 }
 
 .login-form {
-    background: #fff;
+    background: white;
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    width: 320px;
 }
 
-h4 {
-    margin-bottom: 1rem;
+.login-form h4{
     font-size: 1.5rem;
-    color: #333;
+    margin-bottom: 1rem;
+    align-items: center;
 }
 
-.login-form div {
-    margin-bottom: 1rem;
+.login-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
     text-align: left;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.3rem;
-    color: #555;
-}
-
-input {
+.login-form input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 1px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1rem;
-}
-.error-message {
-    color: red;
-    font-weight: bold;
-    margin-bottom: 10px;
 }
 
-button {
+.login-form button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s;
+    font-size: 16px;
 }
 
-button:hover {
+.login-form button:hover {
     background-color: #0056b3;
 }
 
-.login-link {
+.login-form .login-link {
     margin-top: 20px;
-    text-align: center;  /* Center align the text and link */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-size: 14px;
 }
 
-.login-link p {
-    margin: 0;
-    color: #555;
-}
-
-.login-link a {
+.login-form .login-link a {
     color: #007bff;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
+}
+.login-form .login-link a:hover {
+    text-decoration: underline;
 }
 
-.login-link a:hover {
-    text-decoration: underline;
+.role-selection .role{
+    font-size: 1rem;
+}
+.role-selection {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+    margin-bottom: 10px;
+}
+.role-selection label{
+    font-size: 1rem;
+}
+.role-selection input[type="radio"] {
+    accent-color: #007bff; 
+    transform: scale(1.5);
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.error-message {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+/* Container for input and icon */
+.input-field{
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: black;
+    height: 50px;
+    width: 100%;
+    padding: 0 10px 0 45px;
+    border: none;
+    outline: none;
+    transition: .2s ease;
+}
+.input-field:hover, .input-field:focus{
+    background: rgba(255, 255, 255, 0.25);
+}
+::-webkit-input-placeholder{
+    color: rgb(193, 185, 185);
+}
+.input-box i{
+    position: relative;
+    top: -40px;
+    right: 105px;
+    color: #665b5b;
+    font-size: 25px;
+    align-items: center;
+    align-content: center;
+    display: inline-block;
+}
+.input-field {
+    text-indent: 40px;
+}
+.password-box {
+    position: relative;
+}
+
+.password-box .input-field {
+    width: 100%;
+}
+
+.password-box .toggle-password {
+    position: absolute;
+    right: 10px; 
+    top: 46%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 24px;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.password-box .toggle-password:hover {
+    color: #000; /* Darken icon on hover */
 }
