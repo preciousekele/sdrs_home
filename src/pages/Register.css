@@ -60,7 +60,27 @@
     color: #007bff;
     text-decoration: none;
 }
-
 .register-form .login-link a:hover {
     text-decoration: underline;
 }
+
+.role-selection .role{
+    font-size: 1rem;
+}
+.role-selection {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+    margin-bottom: 10px;
+}
+.role-selection label{
+    font-size: 1rem;
+}
+.role-selection input[type="radio"] {
+    accent-color: #007bff; 
+    transform: scale(1.5);
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+

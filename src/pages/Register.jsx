@@ -9,19 +9,24 @@ const Register = () => {
     const[values, setValues] = useState({
         username: '',
         email: '',
-        password: ''
+        password: '',
+        role: 'user'
     })
     const navigate  = useNavigate()
 
     const handleChanges = (e) => {
-        setValues({...values, [e.target.name]: e.target.value})
-    }
+        const { name, value, type, checked } = e.target;
+    
+        setValues((prevValues) => ({
+            ...prevValues,
+            [name]: type === "radio" ? value : checked ? value : prevValues[name]
+        }));
+    };    
     //function to handle form submission
     const handleSubmit =  async (e) => {
         e.preventDefault();
         try{
             const response = await axios.post('http://localhost:3000/auth/register', values)
-            // console.log(response);
             if(response.status === 201) {
                 navigate('/login')
             }                                                   
@@ -46,6 +51,13 @@ const Register = () => {
                 <div>
                     <label htmlFor="password">Password</label>
                     <input type="password" id="password" placeholder="Enter Password" name= "password" onChange={handleChanges}/>
+                </div>
+                <div>
+                    <div className='role-selection'>
+                    <label className='role'>Role</label>
+                        <input type="radio" id="user" name="role" value="user"  checked={values.role === "user"}  onChange={handleChanges} required /> <label htmlFor="user">User</label>
+                        <input type="radio" id="admin" name="role" value="admin"  checked={values.role === "admin"}  onChange={handleChanges} required /> <label htmlFor="admin">Admin</label>
+                    </div>
                 </div>
                 <button type="submit">Sign Up</button>
             </form>
