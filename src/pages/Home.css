@@ -168,7 +168,6 @@
 .nav__logo-circle {
     width: 32px;
     height: 32px;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -336,7 +335,12 @@
   .nav__link-button {
     padding: 0.5rem; 
   }
+  
 }
+@media screen and (min-width: 750px) and (max-width: 960px) {
+  .nav__item  {
+    display: none;
+  }
 
 /* For very small screens */
 @media screen and (max-width: 480px) {
@@ -391,4 +395,115 @@
 .header, .hero {
   position: relative;
   z-index: 1;
+}
+}
+
+/* Logo and university name styles */
+
+/* Base logo container */
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #111;
+  transition: all 0.3s ease;
+}
+
+/* Logo circle container */
+.nav__logo-circle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Logo image */
+.nav__logo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* University name text */
+.nav__logo-name {
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Responsive styles */
+
+/* Tablet and mobile (up to 991px) */
+@media screen and (max-width: 991px) {
+  .nav__logo {
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+  
+  .nav__logo-circle {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .nav__logo-name {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
+
+/* Small tablet (768px to 991px) */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .nav__logo-name {
+    /* Adjust font size for medium screens */
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile landscape (576px to 767px) */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .nav__logo-circle {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .nav__logo-name {
+    font-size: 0.8rem;
+  }
+}
+
+/* Mobile portrait (up to 575px) */
+@media screen and (max-width: 575px) {
+  .nav__logo {
+    gap: 0.3rem;
+  }
+  
+  .nav__logo-circle {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .nav__logo-name {
+    font-size: 0.75rem;
+  }
+}
+
+/* Special mid-range (750px to 960px) */
+@media screen and (min-width: 750px) and (max-width: 960px) {
+  .nav__logo {
+    /* Ensure proper centering in this specific range */
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .nav__logo-name {
+    /* Further reduce size in this range if needed */
+    font-size: 0.78rem;
+  }
 }

@@ -39,7 +39,7 @@ const Header = () => {
                   About
                 </a>
               </li>
-              <li className="nav__item">
+              <li className="nav__item" >
                 <a
                   href="/register"
                   className="nav__link-button"

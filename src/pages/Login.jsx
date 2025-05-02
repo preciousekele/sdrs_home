@@ -3,6 +3,8 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "boxicons/css/boxicons.min.css";
+import password_icon from "../asset/password.png";
+import email_icon from "../asset/email.png";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -26,32 +28,34 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-  
+
     try {
       const response = await axios.post(
         "http://localhost:5000/api/auth/login",
         values,
-        { headers: { 'Content-Type': 'application/json' } }
+        { headers: { "Content-Type": "application/json" } }
       );
-  
+
       // 1. FIRST DEBUG POINT: Verify API response
-      console.log("API Response:", response.data);  // <-- Add here
-  
+      console.log("API Response:", response.data); // <-- Add here
+
       if (response.data?.token) {
         // 2. Store data
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
-  
+
         // 3. SECOND DEBUG POINT: Verify storage
         console.log("Token saved:", localStorage.getItem("token")); // <-- Add here
-        console.log("User saved:", localStorage.getItem("user"));   // Optional check
-  
+        console.log("User saved:", localStorage.getItem("user")); // Optional check
+
         // 4. Add slight delay to ensure storage completes
-        await new Promise(resolve => setTimeout(resolve, 50));
-  
+        await new Promise((resolve) => setTimeout(resolve, 50));
+
         // 5. Redirect
         if (response.data.user?.role === "admin") {
-          window.location.href = `http://localhost:3001?token=${encodeURIComponent(response.data.token)}&user=${encodeURIComponent(JSON.stringify(response.data.user))}`; 
+          window.location.href = `http://localhost:3001?token=${encodeURIComponent(
+            response.data.token
+          )}&user=${encodeURIComponent(JSON.stringify(response.data.user))}`;
         } else {
           navigate("/user-dashboard", { replace: true });
         }
@@ -60,7 +64,7 @@ const Login = () => {
       }
     } catch (err) {
       let errorMessage = "An error occurred during login.";
-  
+
       if (err.response) {
         // Handle specific error status codes
         switch (err.response.status) {
@@ -79,22 +83,25 @@ const Login = () => {
       } else if (err.request) {
         errorMessage = "No response from server. Check your connection.";
       }
-  
+
       setError(errorMessage); // Show the error message
     } finally {
       setIsLoading(false); // Set loading state to false after request completes
     }
   };
-  
 
   return (
     <div className="login-container">
       <div className="login-form">
+      <div className="header_text">
+          <div className="text">Login</div>
+          <div className="underline"></div>
+        </div>
         <form onSubmit={handleSubmit}>
-          <h4>Login</h4>
           {error && <p className="error-message">{error}</p>}
           <div className="input-box">
-            <label htmlFor="email">Email</label>
+            <img src={email_icon} alt="" className="form-icon"/>
+    
             <input
               type="text"
               className="input-field"
@@ -105,10 +112,11 @@ const Login = () => {
               onChange={handleChanges}
               required
             />
-            <i className="bx bx-user"></i>
+  
           </div>
           <div className="input-box password-box">
-            <label htmlFor="password">Password</label>
+            <img src={password_icon} alt="" className="form-icon"/>
+            
             <input
               type={showPassword ? "text" : "password"}
               className="input-field"
@@ -119,9 +127,11 @@ const Login = () => {
               onChange={handleChanges}
               required
             />
-            <i className="bx bx-lock-alt"></i>
+            
             <i
-              className={`bx ${showPassword ? "bx-hide" : "bx-show"} toggle-password`}
+              className={`bx ${
+                showPassword ? "bx-hide" : "bx-show"
+              } toggle-password`}
               onClick={togglePassword}
             ></i>
           </div>
