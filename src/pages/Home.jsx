@@ -30,12 +30,12 @@ const Header = () => {
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="#home" className="nav__link active-link">
+                <a href="#home" className="nav__link active-link" style={{ color: "#FFF" }}>
                   Home
                 </a>
               </li>
-              <li className="nav__item">
-                <a href="#" className="nav__link">
+              <li className="nav__item" >
+                <a href="#" className="nav__link" style={{ color: "#FFF" }}>
                   About
                 </a>
               </li>

@@ -89,7 +89,7 @@ const Register = () => {
     <div className="register-container">
       <div className="register-form">
         <div className="header_text">
-          <div className="text">Register</div>
+          <div className="text">Sign Up</div>
           <div className="underline"></div>
         </div>
         {err && <div className="error-message">{err}</div>}

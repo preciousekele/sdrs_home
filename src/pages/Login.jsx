@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import axios from "axios";
 import "boxicons/css/boxicons.min.css";
 import password_icon from "../asset/password.png";
@@ -14,7 +14,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate(); // React Router navigate hook
+  
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -57,7 +57,9 @@ const Login = () => {
             response.data.token
           )}&user=${encodeURIComponent(JSON.stringify(response.data.user))}`;
         } else {
-          navigate("/user-dashboard", { replace: true });
+          window.location.href = `http://localhost:3002?token=${encodeURIComponent(
+            response.data.token
+          )}&user=${encodeURIComponent(JSON.stringify(response.data.user))}`;
         }
       } else {
         throw new Error("No token received in response");
@@ -106,7 +108,7 @@ const Login = () => {
               type="text"
               className="input-field"
               id="email"
-              placeholder="Enter your Email"
+              placeholder="Email"
               name="email"
               value={values.email}
               onChange={handleChanges}
@@ -121,7 +123,7 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
               className="input-field"
               id="password"
-              placeholder="Enter your Password"
+              placeholder="Password"
               name="password"
               value={values.password}
               onChange={handleChanges}

@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-body{
+/* body{
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -7,12 +7,13 @@ body{
 
     height: 100vh;
     background: linear-gradient(#1f0477, #320350);
-}
+} */
 .register-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; 
+    background: linear-gradient(#1f0477, #320350);
 }
 .header_text{
     display: flex;
@@ -72,7 +73,7 @@ body{
     background-color: #7626f6;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     font-size: 16px;
 }
@@ -115,7 +116,7 @@ body{
     accent-color: #007bff; 
     transform: scale(1.5);
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     margin-left: 10px;
 }
 .error-message {
@@ -143,15 +144,20 @@ body{
 ::-webkit-input-placeholder{
     color: rgb(193, 185, 185);
 }
-
-.input-box img{
+.input-box {
     position: relative;
-    top: 45px;
-    right: 245px;
-    color: #665b5b;
-    font-size: 30px;
-    display: inline-block;
-}
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .input-box img {
+    position: absolute;
+    left: 11px;
+    top: 22px; 
+    transform: translateY(-5%); 
+    font-size: 35px;
+    z-index: 2;
+  }
 
 .input-box .input-icon  {
     width: 25px;
@@ -162,10 +168,14 @@ body{
     transition: all 0.3s ease;
   }
 
-.input-field {
-    text-indent: 40px;
-
-}
+  .input-field {
+    width: 100%;
+    padding: 15px 15px 15px 45px; /* Left padding must be larger than icon's left position */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
 .password-box {
     position: relative;
 }
@@ -177,7 +187,7 @@ body{
 .password-box .toggle-password {
     position: absolute;
     right: 10px; 
-    top: 63%;
+    top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
     font-size: 25px;
@@ -188,3 +198,43 @@ body{
 .password-box .toggle-password:hover {
     color: #000; 
 }
+
+@media (max-width: 768px) {
+    .register-form {
+      width: 90%;
+      padding: 1.5rem;
+    }
+  
+    .input-box img {
+      left: -200px;
+      width: 18px;
+      height: 18px;
+    }
+  
+    .input-field {
+      padding: 12px 12px 12px 40px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .register-form {
+      width: 95%;
+      padding: 1rem;
+    }
+  
+    .text {
+      font-size: 36px;
+    }
+  
+    .input-box img {
+      left: -140px;
+      width: 16px;
+      height: 16px;
+    }
+  
+    .input-field {
+      padding: 10px 10px 10px 36px;
+      font-size: 14px;
+    }
+  }
+  
