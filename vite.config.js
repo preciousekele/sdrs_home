@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
+  base: '/sdars_frontend/', 
   plugins: [react()],
   resolve: {
     alias: {
@@ -10,9 +11,8 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
+    port: 3005,
     open: true,
-    // 👇 Enable history fallback
-    historyApiFallback: true,
+    historyApiFallback: true, 
   },
 });
