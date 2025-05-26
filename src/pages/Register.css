@@ -99,7 +99,7 @@
     margin-top: 30px;
 }
 .role-selection .role{
-    font-size: 1rem;
+    font-size: 15.5px !important;
     
 }
 .role-selection {
@@ -109,15 +109,15 @@
     margin-bottom: 20px;
 }
 .role-selection label{
-    font-size: 1rem;
+    font-size: 15px !important;
     color: #555;
 }
 .role-selection input[type="radio"] {
-    accent-color: #007bff; 
-    transform: scale(1.5);
-    align-items: center;
-    margin-bottom: 5px;
-    margin-left: 10px;
+    accent-color: #0759b1 !important; 
+    transform: scale(1.5) !important;
+    align-items: center !important;
+    margin-bottom: 5px !important;
+    margin-left: 10px !important;
 }
 .error-message {
     color: red;
@@ -125,7 +125,6 @@
     font-size: 0.9rem;
 }
 
-/* Container for input and icon */
 .input-field{
     font-size: 15px;
     background: rgba(255, 255, 255, 0.2);
@@ -148,15 +147,6 @@
     position: relative;
     margin-bottom: 20px;
     width: 100%;
-  }
-
-  .input-box img {
-    position: absolute;
-    left: 11px;
-    top: 22px; 
-    transform: translateY(-5%); 
-    font-size: 35px;
-    z-index: 2;
   }
 
 .input-box .input-icon  {
@@ -238,3 +228,42 @@
     }
   }
   
+.input-box i {
+    position: absolute;
+    top: 21px;
+    left: 11px;
+    font-size: 24px;
+    color: #464343;
+}
+.input-box-password-box .bx-lock-alt{
+    position: absolute;
+    top: 21px;
+    left: 11px;
+    font-size: 24px;
+    color: #464343;
+}
+
+.input-box-password-box{
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+.input-box-password-box .input-icon  {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    object-fit: contain;
+    filter: invert(50%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(90%) contrast(85%);
+    transition: all 0.3s ease;
+  }
+.input-box-password-box .toggle-password {
+    position: absolute;
+    right: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 25px;
+    color: #4a4646;
+    transition: color 0.3s ease;
+}

@@ -3,8 +3,6 @@ import "./Login.css";
 import { Link} from "react-router-dom";
 import axios from "axios";
 import "boxicons/css/boxicons.min.css";
-import password_icon from "../asset/password.png";
-import email_icon from "../asset/email.png";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -102,8 +100,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           {error && <p className="error-message">{error}</p>}
           <div className="input-box">
-            <img src={email_icon} alt="" className="form-icon"/>
-    
+            <i className="bx bx-envelope"></i>   
             <input
               type="text"
               className="input-field"
@@ -116,9 +113,8 @@ const Login = () => {
             />
   
           </div>
-          <div className="input-box password-box">
-            <img src={password_icon} alt="" className="form-icon"/>
-            
+          <div className="input-box-password-box">
+            <i className="bx bx-lock-alt"></i>            
             <input
               type={showPassword ? "text" : "password"}
               className="input-field"

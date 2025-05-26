@@ -5,15 +5,16 @@
   "type": "module",
   "homepage": "https://preciousekele.github.io/sdars_frontend",
   "scripts": {
-  "dev": "vite",
-  "start": "concurrently \"npm run dev\" \"cd server && npm run dev\"",
-  "build": "vite build",
-  "lint": "eslint .",
-  "preview": "vite preview",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
-},
+    "dev": "vite",
+    "start": "concurrently \"npm run dev\" \"cd server && npm run dev\"",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
   "dependencies": {
+    "@babel/types": "^7.27.1",
     "@tailwindcss/postcss": "^4.0.15",
     "axios": "^1.8.4",
     "boxicons": "^2.1.4",

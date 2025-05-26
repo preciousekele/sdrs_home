@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import "./Hero.css";
 
 const Hero = () => {
@@ -12,9 +12,9 @@ const Hero = () => {
           aperiam atque esse ipsum maxime earum tempora, voluptatem ab.
         </p>
         <button className="btn">
-          <a href="/register" className="nav__link-button">
-            Go to E-PORTAL <i className="bx bx-log-in"></i>
-          </a>
+          <Link to="/register" className="nav__link-button">
+            Go to E-Portal <i className="bx bx-log-in"></i>
+          </Link>
         </button>
       </div>
     </div>

@@ -5,10 +5,6 @@ import axios from "axios";
 import "boxicons";
 import "boxicons/css/boxicons.min.css";
 
-import user_icon from "../asset/person.png";
-import password_icon from "../asset/password.png";
-import email_icon from "../asset/email.png";
-
 const Register = () => {
   const [values, setValues] = useState({
     name: "",
@@ -95,7 +91,7 @@ const Register = () => {
         {err && <div className="error-message">{err}</div>}
         <form onSubmit={handleSubmit}>
           <div className="input-box">
-            <img src={user_icon} alt="" className="form-icon" />
+            <i className="bx bx-user"></i>
             <input
               type="text"
               className="input-field"
@@ -108,7 +104,7 @@ const Register = () => {
           </div>
 
           <div className="input-box">
-            <img src={email_icon} alt="" className="form-icon" />
+             <i className="bx bx-envelope"></i>
             <input
               type="email"
               className="input-field"
@@ -120,8 +116,8 @@ const Register = () => {
             />
           </div>
 
-          <div className="input-box password-box">
-            <img src={password_icon} alt="" className="form-icon" />
+          <div className="input-box-password-box">
+           <i className="bx bx-lock-alt"></i>
             <input
               type={showPassword ? "text" : "password"}
               className="input-field"

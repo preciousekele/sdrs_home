@@ -3,7 +3,6 @@ import { HashRouter as Router, Routes, Route, Navigate, useLocation } from "reac
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import UserDashboard from "./pages/userDashboard/UserDashboard";
 import Preloader from "./pages/preloader/Preloader";
 import VerifyEmail from "./pages/verifyEmail";
 import CheckEmail from "./pages/confirmation/checkEmail";
@@ -47,7 +46,6 @@ const MainRoutes = () => {
           <Route path="/confirm-email" element={<ConfirmEmail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
-          <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       )}
