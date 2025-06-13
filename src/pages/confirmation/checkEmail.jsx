@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './CheckEmail.css'; 
+import './checkEmail.css'; 
 
 const CheckEmail = () => {
   return (
