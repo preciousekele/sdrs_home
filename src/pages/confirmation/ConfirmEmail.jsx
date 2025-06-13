@@ -36,7 +36,6 @@ const ConfirmEmail = () => {
     };
 
     confirm();
-
     return () => { called = true; };
   }, [location, navigate]);
 
