@@ -18,7 +18,7 @@ const ConfirmEmail = () => {
         setMessage('Invalid confirmation link.');
         return;
       }
-
+      
       if (called) return; // Prevent multiple calls
       called = true;
 
