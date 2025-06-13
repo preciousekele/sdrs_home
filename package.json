@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://preciousekele.github.io/sdars_frontend",
   "scripts": {
     "dev": "vite",
     "start": "concurrently \"npm run dev\" \"cd server && npm run dev\"",
