@@ -29,13 +29,13 @@ const Login = () => {
     
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://sdars-backend.onrender.com/api/auth/login",
         values,
         { headers: { "Content-Type": "application/json" } }
       );
 
       // 1. FIRST DEBUG POINT: Verify API response
-      console.log("API Response:", response.data); // <-- Add here
+      console.log("API Response:", response.data);
 
       if (response.data?.token) {
         // 2. Store data
@@ -43,19 +43,19 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(response.data.user));
 
         // 3. SECOND DEBUG POINT: Verify storage
-        console.log("Token saved:", localStorage.getItem("token")); // <-- Add here
-        console.log("User saved:", localStorage.getItem("user")); // Optional check
+        console.log("Token saved:", localStorage.getItem("token"));
+        console.log("User saved:", localStorage.getItem("user"));
 
         // 4. Add slight delay to ensure storage completes
         await new Promise((resolve) => setTimeout(resolve, 50));
 
-        // 5. Redirect
+        // 5. Redirect to appropriate Vercel app based on role
         if (response.data.user?.role === "admin") {
-          window.location.href = `http://localhost:3001?token=${encodeURIComponent(
+          window.location.href = `https://mcu-sdars-admin.vercel.app/?token=${encodeURIComponent(
             response.data.token
           )}&user=${encodeURIComponent(JSON.stringify(response.data.user))}`;
         } else {
-          window.location.href = `http://localhost:3002?token=${encodeURIComponent(
+          window.location.href = `https://mcu-sdars-user.vercel.app/?token=${encodeURIComponent(
             response.data.token
           )}&user=${encodeURIComponent(JSON.stringify(response.data.user))}`;
         }
@@ -84,9 +84,9 @@ const Login = () => {
         errorMessage = "No response from server. Check your connection.";
       }
 
-      setError(errorMessage); // Show the error message
+      setError(errorMessage);
     } finally {
-      setIsLoading(false); // Set loading state to false after request completes
+      setIsLoading(false);
     }
   };
 
