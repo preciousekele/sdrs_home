@@ -3,7 +3,6 @@ import logo from './images/logo.png';
 import "boxicons";
 import "boxicons/css/boxicons.min.css";
 import "./home.css";
-import GoalFeatures from './goal/Goal';
 import Hero from './hero/Hero';
 
 const Header = () => {
