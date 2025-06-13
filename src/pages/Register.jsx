@@ -15,7 +15,7 @@ const Register = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [err, setError] = useState(null); // New success message state
+  const [err, setError] = useState(null);
   const navigate = useNavigate();
 
   const togglePassword = () => {
@@ -44,7 +44,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://sdars-backend.onrender.com/api/auth/register",
         values,
         {
           headers: {
