@@ -33,8 +33,8 @@ const Login = () => {
         {
           headers: { 
             "Content-Type": "application/json" 
-          },
-          withCredentials: true // Required for CORS with credentials
+          }
+          // Removed withCredentials: true to avoid CORS issues
         }
       );
 
@@ -86,7 +86,7 @@ const Login = () => {
           <div className="input-box">
             <i className="bx bx-envelope"></i>   
             <input
-              type="email"  // Changed to email type for better validation
+              type="email"
               className="input-field"
               placeholder="Email"
               name="email"
