@@ -34,7 +34,6 @@ const Login = () => {
           headers: { 
             "Content-Type": "application/json" 
           }
-          // Removed withCredentials: true to avoid CORS issues
         }
       );
 
@@ -42,25 +41,30 @@ const Login = () => {
         throw new Error("No token received");
       }
 
-      // Store auth data securely
+      // Store auth data locally for fallback
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
       // Brief delay to ensure storage completes
       await new Promise(resolve => setTimeout(resolve, 50));
 
-      // Role-based redirection WITHOUT exposing tokens in URL
-      const targetUrl = response.data.user?.role === "admin" 
-        ? "https://mcu-sdars-admin.vercel.app" 
-        : "https://mcu-sdars-user.vercel.app";
+      // Create URL with token and user data as parameters
+      const token = encodeURIComponent(response.data.token);
+      const user = encodeURIComponent(JSON.stringify(response.data.user));
       
-      window.location.href = targetUrl;
+      const targetUrl = response.data.user?.role === "admin" 
+        ? `https://mcu-sdars-admin.vercel.app/?token=${token}&user=${user}`
+        : `https://mcu-sdars-user.vercel.app/?token=${token}&user=${user}`;
+      
+      console.log("Redirecting to:", targetUrl);
+      
+      // Use window.location.replace for better redirect behavior
+      window.location.replace(targetUrl);
 
     } catch (err) {
       let errorMessage = "Login failed. Please try again.";
       
       if (err.response) {
-        // Handle specific HTTP errors
         errorMessage = err.response.data?.message || 
           (err.response.status === 401 ? "Invalid credentials" : errorMessage);
       } 
