@@ -92,7 +92,8 @@
     text-decoration: none;
 }
 .register-form .login-link a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: #5593d5;
 }
 
 .role-selection{
