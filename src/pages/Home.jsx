@@ -2,7 +2,7 @@ import React from "react";
 import logo from './images/logo.png';
 import "boxicons";
 import "boxicons/css/boxicons.min.css";
-import "./home.css";
+import "./Home.css";
 import Hero from './hero/Hero';
 
 const Header = () => {
@@ -25,37 +25,9 @@ const Header = () => {
               MCPHERSON UNIVERSITY DISCIPLINARY RECORD SYSTEM
             </span>
           </a>
-
-          <div className="nav__menu" id="nav-menu">
-            <ul className="nav__list">
-              <li className="nav__item">
-                <a href="#home" className="nav__link active-link" style={{ color: "#FFF" }}>
-                  Home
-                </a>
-              </li>
-              <li className="nav__item" >
-                <a href="#" className="nav__link" style={{ color: "#FFF" }}>
-                  About
-                </a>
-              </li>
-              <li className="nav__item" >
-                <a
-                  href="/register"
-                  className="nav__link-button"
-                >
-                  E-PORTAL <i className="bx bx-log-in"></i>
-                </a>
-              </li>
-            </ul>
-
-            <div className="nav__close" id="nav-close">
-              <i className="ri-close-line"></i>
-            </div>
-          </div>
         </nav>
       </header>
       <Hero/>
-      {/* <GoalFeatures/> */}
     </div>
   );
 };

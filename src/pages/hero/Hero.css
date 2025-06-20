@@ -18,15 +18,17 @@
     max-width: 700px;
     margin: 30px auto 20px;
     line-height: 1.4;
+    color: white;
 }
 .btn {
     background-color: rgb(4, 32, 95);
-    color: var(--white-color);
+    color: white;
     padding: 1rem;
     border-radius: 25px;
     transition: background 0.3s ease-in-out;
     outline: 0;
     border: none;
+    margin-top: 40px;
 }
 
 .btn:hover {
