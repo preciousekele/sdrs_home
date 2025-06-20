@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "boxicons/css/boxicons.min.css";
 
@@ -12,7 +12,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -26,119 +25,117 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-    
+
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://sdars-backend.onrender.com/api/auth/login",
         values,
-        { headers: { "Content-Type": "application/json" } }
+        {
+          headers: { 
+            "Content-Type": "application/json" 
+          }
+        }
       );
 
-      // 1. FIRST DEBUG POINT: Verify API response
-      console.log("API Response:", response.data); // <-- Add here
-
-      if (response.data?.token) {
-        // 2. Store data
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-
-        // 3. SECOND DEBUG POINT: Verify storage
-        console.log("Token saved:", localStorage.getItem("token")); // <-- Add here
-        console.log("User saved:", localStorage.getItem("user")); // Optional check
-
-        // 4. Add slight delay to ensure storage completes
-        await new Promise((resolve) => setTimeout(resolve, 50));
-
-        // 5. Redirect
-        if (response.data.user?.role === "admin") {
-          window.location.href = `http://localhost:3001?token=${encodeURIComponent(
-            response.data.token
-          )}&user=${encodeURIComponent(JSON.stringify(response.data.user))}`;
-        } else {
-          window.location.href = `http://localhost:3002?token=${encodeURIComponent(
-            response.data.token
-          )}&user=${encodeURIComponent(JSON.stringify(response.data.user))}`;
-        }
-      } else {
-        throw new Error("No token received in response");
+      if (!response.data?.token) {
+        throw new Error("No token received");
       }
+
+      // Store auth data locally for fallback
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
+      // Brief delay to ensure storage completes
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      // Create URL with token and user data as parameters
+      const token = encodeURIComponent(response.data.token);
+      const user = encodeURIComponent(JSON.stringify(response.data.user));
+      
+      const targetUrl = response.data.user?.role === "admin" 
+        ? `https://mcu-sdars-admin.vercel.app/?token=${token}&user=${user}`
+        : `https://mcu-sdars-user.vercel.app/?token=${token}&user=${user}`;
+      
+      console.log("Redirecting to:", targetUrl);
+      
+      // Use window.location.replace for better redirect behavior
+      window.location.replace(targetUrl);
+
     } catch (err) {
-      let errorMessage = "An error occurred during login.";
-
+      let errorMessage = "Login failed. Please try again.";
+      
       if (err.response) {
-        // Handle specific error status codes
-        switch (err.response.status) {
-          case 400:
-            errorMessage = "Invalid email or password format";
-            break;
-          case 401:
-            errorMessage = "Invalid email or password";
-            break;
-          case 500:
-            errorMessage = "Server error. Please try again later.";
-            break;
-          default:
-            errorMessage = err.response.data?.message || errorMessage;
-        }
-      } else if (err.request) {
-        errorMessage = "No response from server. Check your connection.";
-      }
-
-      setError(errorMessage); // Show the error message
+        errorMessage = err.response.data?.message || 
+          (err.response.status === 401 ? "Invalid credentials" : errorMessage);
+      } 
+      
+      setError(errorMessage);
+      console.error("Login error:", err);
     } finally {
-      setIsLoading(false); // Set loading state to false after request completes
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-form">
-      <div className="header_text">
+        <div className="header_text">
           <div className="text">Login</div>
           <div className="underline"></div>
         </div>
+        
         <form onSubmit={handleSubmit}>
           {error && <p className="error-message">{error}</p>}
+          
           <div className="input-box">
             <i className="bx bx-envelope"></i>   
             <input
-              type="text"
+              type="email"
               className="input-field"
-              id="email"
               placeholder="Email"
               name="email"
               value={values.email}
               onChange={handleChanges}
               required
+              autoComplete="email"
             />
-  
           </div>
+          
           <div className="input-box-password-box">
             <i className="bx bx-lock-alt"></i>            
             <input
               type={showPassword ? "text" : "password"}
               className="input-field"
-              id="password"
               placeholder="Password"
               name="password"
               value={values.password}
               onChange={handleChanges}
               required
+              autoComplete="current-password"
             />
             
             <i
-              className={`bx ${
-                showPassword ? "bx-hide" : "bx-show"
-              } toggle-password`}
+              className={`bx ${showPassword ? "bx-hide" : "bx-show"} toggle-password`}
               onClick={togglePassword}
+              aria-label={showPassword ? "Hide password" : "Show password"}
             ></i>
           </div>
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Login"}
+          
+          <button 
+            type="submit" 
+            disabled={isLoading}
+            aria-busy={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="spinner"></span> Logging in...
+              </>
+            ) : "Login"}
           </button>
         </form>
+        
         <div className="login-link">
-          <p>Don't Have an Account?</p>
+          <p>Don't have an account?</p>
           <Link to="/register">Sign Up</Link>
         </div>
       </div>

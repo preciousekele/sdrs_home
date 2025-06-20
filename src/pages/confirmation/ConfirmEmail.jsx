@@ -18,12 +18,12 @@ const ConfirmEmail = () => {
         setMessage('Invalid confirmation link.');
         return;
       }
-
+      
       if (called) return; // Prevent multiple calls
       called = true;
 
       try {
-        const res = await axios.post('http://localhost:5000/api/auth/confirm-email', { token });
+        const res = await axios.post('https://sdars-backend.onrender.com/api/auth/confirm-email', { token });
 
         setMessage('Email confirmed! Redirecting to login...');
         setTimeout(() => {
@@ -36,7 +36,6 @@ const ConfirmEmail = () => {
     };
 
     confirm();
-
     return () => { called = true; };
   }, [location, navigate]);
 

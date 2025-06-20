@@ -8,13 +8,10 @@ import Hero from './hero/Hero';
 const Header = () => {
   return (
     <div className="home-container">
-      {/* Background elements */}
       <div className="bg-wrapper">
         <div className="gradient-overlay" />
         <div className="blur-overlay" />
       </div>
-
-      {/* Your existing content */}
       <header className="header" id="header">
         <nav className="nav container">
           <a href="#" className="nav__logo">

@@ -20,9 +20,9 @@ const VerifyEmail = () => {
         }
 
         // Make a request to verify the email with the token
-        const verifyEmail = async () => {
+                const verifyEmail = async () => {
             try {
-                await axios.get(`http://localhost:5000/api/auth/verify-email?token=${token}`);
+                await axios.get(`https://sdars-backend.onrender.com/api/auth/verify-email?token=${token}`);
                 setMessage('Email verified successfully! Redirecting to login...');
                 setTimeout(() => {
                     navigate('/login');
@@ -37,6 +37,7 @@ const VerifyEmail = () => {
                 setIsLoading(false);
             }
         };
+
 
         verifyEmail();
     }, [location, navigate]);
