@@ -52,7 +52,7 @@ const Register = () => {
           },
         }
       );
-
+      
       if (response.data.success) {
         navigate("/check-email");
       }
