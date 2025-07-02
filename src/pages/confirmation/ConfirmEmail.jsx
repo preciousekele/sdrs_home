@@ -15,7 +15,7 @@ const ConfirmEmail = () => {
       const token = queryParams.get('token');
 
       if (!token) {
-        setMessage('Invalid confirmation link.');
+        setMessage('');
         return;
       }
       
@@ -40,8 +40,21 @@ const ConfirmEmail = () => {
   }, [location, navigate]);
 
   return (
-    <div className="confirm-email-page">
-      <h2>{message}</h2>
+    <div className="confirm-email-page" style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      fontFamily: 'Arial, sans-serif'
+    }}>
+      <h2 style={{
+        textAlign: 'center',
+        fontSize: '1.5rem',
+        fontWeight: 'normal',
+        margin: 0
+      }}>
+        {message}
+      </h2>
     </div>
   );
 };
