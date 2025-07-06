@@ -28,6 +28,17 @@ const Register = () => {
       ...prev,
       [name]: value,
     }));
+    
+    // Clear error when user starts typing
+    if (err) setError("");
+  };
+
+  // Frontend MCU email validation
+  const validateMCUEmail = (email) => {
+    if (!email.endsWith('@mcu.edu.ng')) {
+      return "Only Registered McPherson Staffs are allowed";
+    }
+    return "";
   };
 
   const handleSubmit = async (e) => {
@@ -36,6 +47,13 @@ const Register = () => {
     // Basic validation
     if (!values.name || !values.email || !values.password || !values.role) {
       setError("Please fill in all required fields.");
+      return;
+    }
+
+    // Frontend MCU email validation
+    const emailError = validateMCUEmail(values.email);
+    if (emailError) {
+      setError(emailError);
       return;
     }
 
@@ -52,7 +70,7 @@ const Register = () => {
           },
         }
       );
-      
+
       if (response.data.success) {
         navigate("/check-email");
       }
