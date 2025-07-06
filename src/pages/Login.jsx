@@ -31,9 +31,9 @@ const Login = () => {
         "https://sdars-backend.onrender.com/api/auth/login",
         values,
         {
-          headers: { 
-            "Content-Type": "application/json" 
-          }
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 
@@ -46,29 +46,28 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
       // Brief delay to ensure storage completes
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await new Promise((resolve) => setTimeout(resolve, 50));
 
       // Create URL with token and user data as parameters
       const token = encodeURIComponent(response.data.token);
       const user = encodeURIComponent(JSON.stringify(response.data.user));
-      
-      const targetUrl = response.data.user?.role === "admin" 
+
+      const targetUrl =
+        response.data.user?.role === "admin"
         ? `https://mcu-sdars-admin.vercel.app/?token=${token}&user=${user}`
         : `https://mcu-sdars-user.vercel.app/?token=${token}&user=${user}`;
-      
+
       console.log("Redirecting to:", targetUrl);
-      
+
       // Use window.location.replace for better redirect behavior
       window.location.replace(targetUrl);
-
     } catch (err) {
       let errorMessage = "Login failed. Please try again.";
-      
-      if (err.response) {
-        errorMessage = err.response.data?.message || 
-          (err.response.status === 401 ? "Invalid credentials" : errorMessage);
-      } 
-      
+
+      if (err.response && err.response.data?.error) {
+        errorMessage = err.response.data.error;
+      }
+
       setError(errorMessage);
       console.error("Login error:", err);
     } finally {
@@ -83,12 +82,12 @@ const Login = () => {
           <div className="text">Login</div>
           <div className="underline"></div>
         </div>
-        
+
         <form onSubmit={handleSubmit}>
           {error && <p className="error-message">{error}</p>}
-          
+
           <div className="input-box">
-            <i className="bx bx-envelope"></i>   
+            <i className="bx bx-envelope"></i>
             <input
               type="email"
               className="input-field"
@@ -100,9 +99,9 @@ const Login = () => {
               autoComplete="email"
             />
           </div>
-          
+
           <div className="input-box-password-box">
-            <i className="bx bx-lock-alt"></i>            
+            <i className="bx bx-lock-alt"></i>
             <input
               type={showPassword ? "text" : "password"}
               className="input-field"
@@ -113,27 +112,27 @@ const Login = () => {
               required
               autoComplete="current-password"
             />
-            
+
             <i
-              className={`bx ${showPassword ? "bx-hide" : "bx-show"} toggle-password`}
+              className={`bx ${
+                showPassword ? "bx-hide" : "bx-show"
+              } toggle-password`}
               onClick={togglePassword}
               aria-label={showPassword ? "Hide password" : "Show password"}
             ></i>
           </div>
-          
-          <button 
-            type="submit" 
-            disabled={isLoading}
-            aria-busy={isLoading}
-          >
+
+          <button type="submit" disabled={isLoading} aria-busy={isLoading}>
             {isLoading ? (
               <>
                 <span className="spinner"></span> Logging in...
               </>
-            ) : "Login"}
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
-        
+
         <div className="login-link">
           <p>Don't have an account?</p>
           <Link to="/register">Sign Up</Link>
